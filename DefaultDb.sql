@@ -1,13 +1,5 @@
 -- Create users if not exists
-SELECT COUNT(*)
-INTO @user_exists
-FROM mysql.user
-WHERE user = 'happy_user' AND host = 'localhost';
-
-IF @user_exists = 0 THEN
-    CREATE USER 'happy_user'@'localhost' IDENTIFIED BY 'Happy_12346';
-END IF;
-
+CALL create_user_if_not_exists();
 -- Flush privileges
 FLUSH PRIVILEGES;
 
@@ -69,3 +61,24 @@ LOCK TABLES `Links` WRITE;
 INSERT INTO `Links` VALUES (1,'Server 1','vless://abd87b55-afaf-4bc6-8dd2-2cce09c4272c@hp.mustang.website:47368?type=kcp&headerType=none&seed=twcK2jV0G4&security=none#Fast-Euro-01'),(2,'Server 2','vless://c07e8407-319d-4f37-e4be-a60051851111@hp.mustang.website:56425?type=ws&path=%2F&host=&security=none#Bossted-M1'),(3,'Server 3','ss://MjAyMi1ibGFrZTMtYWVzLTI1Ni1nY206Z0Mza3hKcjZ6UUJNTzBYdm1jRGkrWFFieENpZUNzbHBwcDV0WVNJRXVOYz06YmtuT3NwWEJUUlRocmdJZDhtQWhXY3FTc0tNRXIyYTEydXRSUy9LQ0hRST0@hp.mustang.website:31711?type=tcp#Shadow-Euro-02'),(4,'Server 97','vmuss://pi1T2.W306Y.eq1#9a1pa1ol8he0ne0#9a2wq5te0do0#9a3wourckvefbga.Urscsytiku.swctjo54m#9a4mw0su0pf2#9a5dr0ed1cs2bv0#9a6nkgyhotYonygx5lmnesu.yecuiowjm#9a7klfsladicqheyrbejohwokpkzj.rfcpfovum#9a8opodfjmxncvbhfdj'),(5,'Server 98','vmoss://Hchwhpbtlq5.MMmiSugnsjotjHaznn0WgTk.q4wybeVDbPesXyiLjtMRe#901HM1pZsR597oWAcvrmiJT4RBoVOG2ccTNR18Lixe3ady85PRpaJDtSC8hSYTwQi0ofBvjwINb9PljsuJIgVENU'),(6,'Server 99','vmoss://Hchwhpbt.MMmiSugnsjotjHaznn0WgTk.q4wybeVDbPesXyiLjtMRe#902HM1pZsR597oWAcvrmiJT4RBoVOG2ccTNR18Lixe3ady85PRpaJDtSC8hSYTwQi0ofBvjwINb9PljsuJIgVENU'),(7,'Server 4','vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@15.188.13.15:22222?path=/telegram-channel-vlessconfig-ws&security=tls&encryption=none&host=telegram-channel-vlessconfig.sohala.uk&type=ws&sni=telegram-channel-vlessconfig.sohala.uk#Euro-04');
 /*!40000 ALTER TABLE `Links` ENABLE KEYS */;
 UNLOCK TABLES;
+
+DELIMITER //
+
+CREATE PROCEDURE create_user_if_not_exists()
+BEGIN
+    DECLARE user_count INT;
+    
+    SELECT COUNT(*)
+    INTO user_count
+    FROM mysql.user
+    WHERE user = 'happy_user' AND host = 'localhost';
+    
+    IF user_count = 0 THEN
+        SET @sql = CONCAT('CREATE USER ''happy_user''@''localhost'' IDENTIFIED BY ''Happy_12346''');
+        PREPARE stmt FROM @sql;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+    END IF;
+END //
+
+DELIMITER ;
