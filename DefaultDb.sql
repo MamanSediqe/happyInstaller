@@ -1,5 +1,12 @@
--- Create users
-CREATE USER 'happy_user'@'localhost' IDENTIFIED BY 'Happy_12346';
+-- Create users if not exists
+SELECT COUNT(*)
+INTO @user_exists
+FROM mysql.user
+WHERE user = 'happy_user' AND host = 'localhost';
+
+IF @user_exists = 0 THEN
+    CREATE USER 'happy_user'@'localhost' IDENTIFIED BY 'Happy_12346';
+END IF;
 
 -- Flush privileges
 FLUSH PRIVILEGES;
