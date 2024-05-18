@@ -5,12 +5,14 @@ sudo mkdir -p /var/www/html/vpn
 sudo mkdir -p /var/www/html/happy/
 sudo unzip Happy.zip -d /var/www/html/happy/
 sudo unzip Happy.zip -d /var/www/html/vpn
-
-
+        
+sudo mysql -u root -e "CREATE USER 'u312411968_happy_user'@'localhost' IDENTIFIED BY 'Happy_12346';"        
 sudo mysql -u root -e "CREATE USER 'happy_user'@'localhost' IDENTIFIED BY 'Happy_12346';"
 sudo mysql -u root -e "FLUSH PRIVILEGES;"
 sudo mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'happy_user'@'localhost';"
+sudo mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'u312411968_happy_user'@'localhost';"
 sudo mysql -u happy_user -p'Happy_12346' -e "CREATE DATABASE IF NOT EXISTS LinksDb;"
+sudo mysql -u happy_user -p'Happy_12346' -e "CREATE DATABASE IF NOT EXISTS u312411968_happy_db;"
 curl -H "Cache-Control: no-cache" -H "Pragma: no-cache" -Ls https://raw.githubusercontent.com/MamanSediqe/happyInstaller/main/DefaultDb.sql > DefaultDb.sql
 sudo mysql -u root < DefaultDb.sql
 rm DefaultDb.sql
