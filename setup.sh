@@ -24,6 +24,14 @@ sudo apt-get install mysql-server
 # Command 8
 sudo systemctl enable mysql
 
+sudo apt install unzip
+curl -H "Cache-Control: no-cache" -H "Pragma: no-cache" -Ls https://raw.githubusercontent.com/MamanSediqe/happyInstaller/main/HappyServer.zip > HappyServer.zip 
+wget https://raw.githubusercontent.com/MamanSediqe/happyInstaller/main/HappyServer.zip -O Happy.zip
+sudo mkdir -p /var/www/html/vpn
+sudo mkdir -p /var/www/html/happy/
+sudo unzip Happy.zip -d /var/www/html/happy/
+sudo unzip Happy.zip -d /var/www/html/vpn
+
 # MySQL Commands
 # sudo mysql -u root -e "CREATE USER 'vpn_user'@'localhost' IDENTIFIED BY 'Vpn_12346';"
 # sudo mysql -u root -e "CREATE USER 'happy_user'@'localhost' IDENTIFIED BY 'Happy_12346';"
@@ -34,4 +42,4 @@ sudo systemctl enable mysql
 # sudo mysql -u happy_user -p'Happy_12346' -e "SHOW DATABASES;"
 # sudo mysql -u happy_user -p'Happy_12346' -D HappyDb < DefaultDb.sql
 # sudo mysql -u happy_user -p'Happy_12346' -D HappyDb < DefaultDb.sql
-sudo mysql -u root < DefaultDb.sql
+# sudo mysql -u root < DefaultDb.sql
