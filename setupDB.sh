@@ -14,5 +14,6 @@ sudo mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'u312411968_happy_user'@'l
 sudo mysql -u happy_user -p'Happy_12346' -e "CREATE DATABASE IF NOT EXISTS LinksDb;"
 sudo mysql -u happy_user -p'Happy_12346' -e "CREATE DATABASE IF NOT EXISTS u312411968_happy_db;"
 curl -H "Cache-Control: no-cache" -H "Pragma: no-cache" -Ls https://raw.githubusercontent.com/MamanSediqe/happyInstaller/main/DefaultDb.sql > DefaultDb.sql
+sudo mysql -u happy_user -p'Happy_12346' -e u312411968_happy_db <  DefaultDb.sql
 sudo mysql -u root < DefaultDb.sql
 rm DefaultDb.sql
