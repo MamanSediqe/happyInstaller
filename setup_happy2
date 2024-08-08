@@ -17,3 +17,4 @@ sudo mysql -u u312411968_happy2_user -p'Happy_12346' u312411968_happy2_db < Defa
 
 # Cleanup
 rm DefaultDb2.sql
+rm Happy2Server.zip
