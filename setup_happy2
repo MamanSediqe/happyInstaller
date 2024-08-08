@@ -2,7 +2,7 @@ sudo apt install unzip
 curl -H "Cache-Control: no-cache" -H "Pragma: no-cache" -Ls https://raw.githubusercontent.com/MamanSediqe/happyInstaller/main/Happy2Server.zip > Happy2Server.zip 
 wget https://raw.githubusercontent.com/MamanSediqe/happyInstaller/main/Happy2Server.zip -O Happy2.zip
 sudo mkdir -p /var/www/html/happy2/
-sudo unzip Happy.zip -d /var/www/html/happy2/
+sudo unzip Happy2.zip -d /var/www/html/happy2/
         
 sudo mysql -u root -e "CREATE USER 'u312411968_happy2_user'@'localhost' IDENTIFIED BY 'Happy_12346';"        
 sudo mysql -u root -e "CREATE USER 'happy2_user'@'localhost' IDENTIFIED BY 'Happy_12346';"
