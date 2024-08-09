@@ -47,7 +47,7 @@ sudo mysql -u u312411968_happy2_user -p'Happy_12346' -e "CREATE DATABASE IF NOT 
 #rm DefaultDb2.sql
 
 #Import the SQL dump into the database
-#sudo mysql -u u312411968_happy2_user -p'Happy_12346' u312411968_happy2_db < /var/www/html/happy2/DefaultDb2.sql
+sudo mysql -u u312411968_happy2_user -p'Happy_12346' u312411968_happy2_db < /var/www/html/happy2/DefaultDb2.sql
 
 
 # Cleanup
